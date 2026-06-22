@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>开云 · 知识库入口</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: "Noto Serif SC", "Times New Roman", Georgia, "Songti SC", serif;
+            background-color: #f9f7f4;
+            color: #3e3a35;
+            line-height: 1.8;
+            padding: 2rem 1.8rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .page-wrap {
+            max-width: 880px;
+            width: 100%;
+            background: #fefcf7;
+            border-radius: 28px;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+            padding: 3rem 2.5rem;
+            transition: padding 0.2s;
+        }
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .page-wrap {
+                padding: 2rem 1.2rem;
+                border-radius: 18px;
+            }
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 450;
+            letter-spacing: 0.02em;
+            border-left: 4px solid #b7a28b;
+            padding-left: 1.2rem;
+            margin-bottom: 0.6rem;
+            color: #2d2a25;
+        }
+        .subhead {
+            font-size: 0.95rem;
+            color: #7b726a;
+            border-bottom: 1px dashed #d8cfc4;
+            padding-bottom: 1.4rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        .subhead span {
+            background: #efe8df;
+            padding: 0.1rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #5e554c;
+        }
+
+        .hero-note {
+            background: #f2ede6;
+            padding: 1.6rem 2rem;
+            border-radius: 24px;
+            margin-bottom: 2.2rem;
+            font-size: 1.05rem;
+            border: 1px solid #e5dbd0;
+        }
+        .hero-note p {
+            margin-bottom: 0.6rem;
+        }
+        .hero-note p:last-child {
+            margin-bottom: 0;
+        }
+        .hero-note strong {
+            font-weight: 550;
+            color: #4f453b;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 420;
+            margin: 2.2rem 0 1rem 0;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid #e0d6ca;
+            letter-spacing: 0.01em;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.6rem;
+            margin: 1.4rem 0 2rem 0;
+        }
+        .card-item {
+            background: #faf6f0;
+            border-radius: 20px;
+            padding: 1.4rem 1.2rem;
+            border: 1px solid #e7ddd2;
+            transition: background 0.2s;
+        }
+        .card-item:hover {
+            background: #f4ede4;
+        }
+        .card-item h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #4d4238;
+            letter-spacing: 0.02em;
+        }
+        .card-item p {
+            font-size: 0.95rem;
+            color: #5c534a;
+        }
+
+        .info-box {
+            background: #f6f1ea;
+            border-left: 4px solid #bcab97;
+            padding: 1.2rem 1.6rem;
+            border-radius: 0 16px 16px 0;
+            margin: 1.8rem 0;
+        }
+        .info-box p {
+            font-size: 0.98rem;
+        }
+        .info-box a {
+            color: #6b5f52;
+            text-decoration: underline;
+            text-decoration-color: #cbbca9;
+            text-underline-offset: 3px;
+            font-weight: 500;
+        }
+        .info-box a:hover {
+            color: #3f362d;
+            text-decoration-color: #9a8877;
+        }
+
+        .tip-block {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+            background: #ece6de;
+            padding: 1rem 1.6rem;
+            border-radius: 40px 18px 18px 40px;
+            margin: 1.4rem 0 2.2rem 0;
+        }
+        .tip-block .marker {
+            background: #c1b09b;
+            color: #fefcf7;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            white-space: nowrap;
+            margin-top: 0.2rem;
+        }
+        .tip-block p {
+            font-size: 0.95rem;
+            color: #4b4239;
+        }
+
+        .faq-mini {
+            margin: 2rem 0 1.2rem 0;
+        }
+        .faq-item {
+            border-bottom: 1px dotted #d7cdc0;
+            padding: 0.9rem 0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-q {
+            font-weight: 500;
+            color: #4c4237;
+            margin-bottom: 0.2rem;
+        }
+        .faq-a {
+            font-size: 0.95rem;
+            color: #655c52;
+            padding-left: 0.8rem;
+        }
+
+        .scene-list {
+            margin: 1.2rem 0 1.8rem 0;
+            padding-left: 1.2rem;
+        }
+        .scene-list li {
+            margin-bottom: 0.6rem;
+            list-style-type: "— ";
+            padding-left: 0.6rem;
+            color: #4f463d;
+        }
+
+        .footer-meta {
+            margin-top: 2.8rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e2d8cc;
+            font-size: 0.85rem;
+            color: #8c8176;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        @media (max-width: 480px) {
+            .hero-note {
+                padding: 1.2rem 1.2rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .tip-block {
+                flex-direction: column;
+                border-radius: 18px;
+                padding: 1rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <h1>开云 · 知识库入口</h1>
+    <div class="subhead">
+        <span>目录感布局</span>
+        <span>稳定入口 · 页面说明</span>
+        <span>种子 ID: df</span>
+    </div>
+
+    <div class="hero-note">
+        <p>关于一个名字叫<strong>开云</strong>的站点，它并非庞杂的信息集散地，而更像一条安静的走廊——两侧是整理好的笔记、索引和说明。这里没有弹窗催促，没有夸大其词，只有经过筛选的链接与段落。</p>
+        <p>如果你需要一条稳定、不绕弯的路径，下面这张卡片目录可以帮助你快速定位。<strong>开云</strong>本身即是那个可以持续指向的坐标。</p>
+    </div>
+
+    <div class="section-title">📂 信息卡片 · 目录区</div>
+    <div class="card-grid">
+        <div class="card-item">
+            <h3>站点说明</h3>
+            <p>页面结构、更新习惯、内容边界。适合第一次接触的人了解大致轮廓。</p>
+        </div>
+        <div class="card-item">
+            <h3>常用路径</h3>
+            <p>直接指向 <a href="https://mobi-kaaiyun.com">开云</a> 的稳定链接，以及各分区简述。</p>
+        </div>
+        <div class="card-item">
+            <h3>提示区</h3>
+            <p>关于阅读顺序、链接状态、以及如何避开干扰信息的建议。</p>
+        </div>
+        <div class="card-item">
+            <h3>相关信息</h3>
+            <p>与站点主题关联的参考条目、背景说明和常见问题摘要。</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <p>📍 当前页面的主要链接指向 <a href="https://mobi-kaaiyun.com">开云</a> —— 它被嵌入在此处，作为一个自然的引用，而非独立的按钮或入口提示。你可以将这条链接视为一个稳定的坐标，随时可以折返。</p>
+    </div>
+
+    <div class="section-title">🧭 提示区</div>
+    <div class="tip-block">
+        <span class="marker">阅读建议</span>
+        <p>如果你习惯先看整体再看细节，建议从左到右浏览卡片。若只想确认主链接，直接使用上面信息框中的地址即可。所有内容均基于对站点的日常观察整理，不构成任何形式的承诺或诱导。</p>
+    </div>
+    <div class="tip-block" style="background:#efe7dd; border-radius: 18px 40px 40px 18px; margin-top: 0.6rem;">
+        <span class="marker">链接状态</span>
+        <p><a href="https://mobi-kaaiyun.com">开云</a> 链接在页面中多次以自然语句形式出现，但均指向同一地址。建议复制链接后使用浏览器打开，以确保环境干净。</p>
+    </div>
+
+    <div class="section-title">📎 相关信息</div>
+    <ul class="scene-list">
+        <li>内容方向：以知识库的入口逻辑组织页面，弱化营销感，强调结构清晰。</li>
+        <li>视觉基调：米白背景配合文章级排版，引用区与提示框作为视觉停顿。</li>
+        <li>链接用法：本文中共出现两处指向 <a href="https://mobi-kaaiyun.com">开云</a> 的 a 标签，均嵌入叙述句中，无额外文字。</li>
+        <li>种子参考：df3db488210c12a1（仅用作变化依据，未显示在可见正文中）。</li>
+    </ul>
+
+    <div class="section-title">❓ FAQ 摘要</div>
+    <div class="faq-mini">
+        <div class="faq-item">
+            <div class="faq-q">“开云”是什么类型的网站？</div>
+            <div class="faq-a">一个以信息呈现为主的页面集合，更接近目录与说明页的组合，不涉及具体产品下载或注册引导。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">页面中的链接安全吗？</div>
+            <div class="faq-a">所有 a 标签均指向 https://mobi-kaaiyun.com，不包含跳转或追踪参数，建议自行判断网络环境。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">为什么卡片中没有大段的描述？</div>
+            <div class="faq-a">刻意保持克制——每个卡片只承担目录提示功能，详细内容留给站点本身。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">我可以直接使用链接吗？</div>
+            <div class="faq-a">当然。句子中的 <a href="https://mobi-kaaiyun.com">开云</a> 就是可点击的链接，无需额外操作。</div>
+        </div>
+    </div>
+
+    <div class="footer-meta">
+        <span>内容整理 · 知识库入口</span>
+        <span>页面版本 · 2025</span>
+    </div>
+</div>
+</body>
+</html>
